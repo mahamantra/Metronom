@@ -32,12 +32,26 @@
         android:id="@+id/button150"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="342dp"
+        android:layout_marginBottom="119dp"
         android:onClick="play150"
         android:text="150"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/button4"
         app:layout_constraintEnd_toStartOf="@+id/button200"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/button100"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="129dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="130dp"
+        android:onClick="stop"
+        android:text="Stop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button150" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
