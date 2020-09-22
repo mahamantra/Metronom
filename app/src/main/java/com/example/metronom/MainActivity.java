@@ -6,9 +6,9 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
+import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
-    private float speed ;
     MediaPlayer mp;
 
 
@@ -16,38 +16,50 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mp= MediaPlayer.create(MainActivity.this,R.raw.music);
+
+        Button playBtn = (Button) findViewById(R.id.buttonPlay);
+        playBtn.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                mp = MediaPlayer.create(MainActivity.this, R.raw.music);
+                mp.setLooping(true);
+                mp.start();
+            }
+        });
+
+        Button stopBtn = (Button) findViewById(R.id.buttonStop);
+        stopBtn.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+
+                if (mp != null) {
+                    mp.stop();
+                    mp.release();
+                    mp = null;
+                }
+            }
+        });
     }
 
+
     public void play100(View view) {
-        if (mp.isPlaying()){
-            mp.stop();
+        if (mp != null) {
+            mp.setPlaybackParams(mp.getPlaybackParams().setSpeed(1f));
         }
-        speed=1f;
-        mp.setPlaybackParams(mp.getPlaybackParams().setSpeed(speed));
-        mp.start();
     }
 
     public void play150(View view) {
-        if (mp.isPlaying()){
-            mp.stop();
+        if (mp != null) {
+            mp.setPlaybackParams(mp.getPlaybackParams().setSpeed(1.5f));
         }
-        speed=1.5f;
-        mp.setPlaybackParams(mp.getPlaybackParams().setSpeed(speed));
-        mp.start();
     }
 
     public void play200(View view) {
-        if (mp.isPlaying()){
-            mp.stop();
+        if (mp != null) {
+            mp.setPlaybackParams(mp.getPlaybackParams().setSpeed(2f));
         }
-        speed=2f;
-        mp.setPlaybackParams(mp.getPlaybackParams().setSpeed(speed));
-        mp.start();
     }
 
-
-    public void stop(View view) {
-        mp.stop();
-    }
 }
